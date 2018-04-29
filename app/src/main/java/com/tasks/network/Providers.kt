@@ -2,7 +2,7 @@ package com.tasks.network
 
 import com.google.gson.GsonBuilder
 import com.tasks.BuildConfig
-import com.tasks.model.TaskFeed
+import com.tasks.model.Feeds
 import com.tasks.network.jsonserialization.TaskFeedDeserializer
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -18,7 +18,7 @@ fun getRetrofit(): Retrofit {
     if (BuildConfig.DEBUG)
         builder.addInterceptor(getLoggingInterceptor(HttpLoggingInterceptor.Level.BODY))
     val gsonBuilder = GsonBuilder()
-    gsonBuilder.registerTypeAdapter(TaskFeed::class.java, TaskFeedDeserializer())
+    gsonBuilder.registerTypeAdapter(Feeds::class.java, TaskFeedDeserializer())
     return Retrofit.Builder()
             .baseUrl(URL_BASE)
             .client(builder.build())

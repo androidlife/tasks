@@ -2,7 +2,7 @@ package com.tasks.network
 
 import com.tasks.model.Profile
 import com.tasks.model.Task
-import com.tasks.model.TaskFeed
+import com.tasks.model.Feeds
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -15,5 +15,5 @@ interface TaskService {
     fun getTask(@Path(PATH_TASK) taskId: Int): Single<Task>
 
     @GET(URL_TASKS_FEED)
-    fun getTasksFeed(): Single<TaskFeed>
+    fun getTasksFeed(): Single<Feeds>
 }

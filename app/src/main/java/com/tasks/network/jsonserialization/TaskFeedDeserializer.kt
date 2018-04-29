@@ -3,19 +3,19 @@ package com.tasks.network.jsonserialization
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer
 import com.google.gson.JsonElement
-import com.tasks.model.Feed
-import com.tasks.model.TaskFeed
+import com.tasks.model.FeedItem
+import com.tasks.model.Feeds
 import java.lang.reflect.Type
 
-class TaskFeedDeserializer() : JsonDeserializer<TaskFeed> {
+class TaskFeedDeserializer() : JsonDeserializer<Feeds> {
     private val TASK_ID = "task_id"
     private val PROFILE_ID = "profile_id"
     private val TEXT = "text"
     private val CREATED_AT = "created_at"
     private val EVENT = "event"
 
-    override fun deserialize(json: JsonElement?, typeOfT: Type?, context: JsonDeserializationContext?): TaskFeed {
-        val feeds = ArrayList<Feed>()
+    override fun deserialize(json: JsonElement?, typeOfT: Type?, context: JsonDeserializationContext?): Feeds {
+        val feeds = ArrayList<FeedItem>()
         val profileIds = HashSet<Int>()
         val taskIds = HashSet<Int>()
 
@@ -29,10 +29,10 @@ class TaskFeedDeserializer() : JsonDeserializer<TaskFeed> {
             val text = jsonObject.get(TEXT).asString
             val createdAt = jsonObject.get(CREATED_AT).asString
             val event = jsonObject.get(EVENT).asString
-            feeds.add(Feed(taskId, profileId, text, createdAt, event))
+            feeds.add(FeedItem(taskId, profileId, text, createdAt, event))
         }
 
-        return TaskFeed(feeds, taskIds, profileIds)
+        return Feeds(feeds, taskIds, profileIds)
     }
 
 }

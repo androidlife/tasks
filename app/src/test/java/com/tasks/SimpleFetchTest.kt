@@ -1,5 +1,6 @@
 package com.tasks
 
+import com.tasks.model.FeedsTransformer
 import com.tasks.model.Profile
 import com.tasks.model.Task
 import com.tasks.network.ApiManager
@@ -9,10 +10,21 @@ import org.junit.Test
 
 
 class SimpleFetchTest {
+
+    @Test
+    fun fetchFeeds() {
+        val taskService = ApiManager.taskService
+        taskService.getTasksFeed()
+                .map { feeds -> FeedsTransformer().transformToObservable(taskService, feeds) }
+                .flatMap { feedsObservable ->{
+                    Single.concat<> {  }
+                } }
+    }
+
     //@Test
     fun fetchTaskFeed() {
         val taskFeed = ApiManager.taskService.getTasksFeed().blockingGet()
-        assertTrue(taskFeed != null && taskFeed.feeds.isNotEmpty() && taskFeed.profileIds.isNotEmpty()
+        assertTrue(taskFeed != null && taskFeed.feedItems.isNotEmpty() && taskFeed.profileIds.isNotEmpty()
                 && taskFeed.taskIds.isNotEmpty())
     }
 
@@ -25,7 +37,7 @@ class SimpleFetchTest {
         assertTrue(tasks != null && tasks.isNotEmpty())
     }
 
-    @Test
+    //@Test
     fun testErrorCaseForTasks() {
         val tasksList = ArrayList<Single<Task>>()
         for (i in -1..2)
