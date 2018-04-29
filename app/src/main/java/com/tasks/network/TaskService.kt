@@ -7,7 +7,7 @@ import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-interface ApiService {
+interface TaskService {
     @GET(URL_PROFILE)
     fun getProfile(@Path(PATH_PROFILE) profileId: Int): Single<Profile>
 
