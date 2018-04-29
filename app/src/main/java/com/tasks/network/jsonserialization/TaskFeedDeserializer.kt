@@ -5,6 +5,8 @@ import com.google.gson.JsonDeserializer
 import com.google.gson.JsonElement
 import com.tasks.model.FeedItem
 import com.tasks.model.Feeds
+import com.tasks.model.Profile
+import com.tasks.model.Task
 import java.lang.reflect.Type
 
 class TaskFeedDeserializer() : JsonDeserializer<Feeds> {
@@ -16,23 +18,38 @@ class TaskFeedDeserializer() : JsonDeserializer<Feeds> {
 
     override fun deserialize(json: JsonElement?, typeOfT: Type?, context: JsonDeserializationContext?): Feeds {
         val feeds = ArrayList<FeedItem>()
-        val profileIds = HashSet<Int>()
-        val taskIds = HashSet<Int>()
+        val profiles = HashMap<Profile, ArrayList<Int>>()
+        val tasks = HashMap<Task, ArrayList<Int>>()
+
+        var index = 0
 
         json?.asJsonArray?.onEach {
             val jsonObject = it.asJsonObject
             val taskId = jsonObject.get(TASK_ID).asInt
             val profileId = jsonObject.get(PROFILE_ID).asInt
-            profileIds.add(profileId)
-            taskIds.add(taskId)
+
+            val profile = Profile.getEmpty(profileId)
+            if (profiles.contains(profile))
+                profiles[profile]?.add(index)
+            else
+                profiles.put(profile, arrayListOf(index))
+
+
+            val task = Task.getEmpty(taskId)
+            if (tasks.contains(task))
+                tasks[task]?.add(index)
+            else
+                tasks.put(task, arrayListOf(index))
+
 
             val text = jsonObject.get(TEXT).asString
             val createdAt = jsonObject.get(CREATED_AT).asString
             val event = jsonObject.get(EVENT).asString
             feeds.add(FeedItem(taskId, profileId, text, createdAt, event))
+            ++index
         }
 
-        return Feeds(feeds, taskIds, profileIds)
+        return Feeds(feeds, tasks, profiles)
     }
 
 }
