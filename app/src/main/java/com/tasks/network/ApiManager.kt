@@ -1,5 +1,7 @@
 package com.tasks.network
 
+import com.tasks.provider.Injection
+
 object ApiManager {
-    val taskService: TaskService = getRetrofit().create(TaskService::class.java)
+    val taskService: TaskService = Injection.getRetrofit().create(TaskService::class.java)
 }

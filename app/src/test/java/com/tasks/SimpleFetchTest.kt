@@ -2,17 +2,25 @@ package com.tasks
 
 import com.tasks.model.Profile
 import com.tasks.model.Task
-import com.tasks.network.ApiManager
+import com.tasks.network.TaskService
+import com.tasks.provider.Injection
 import io.reactivex.Single
 import org.junit.Assert.assertTrue
+import org.junit.Before
 import org.junit.Test
 
 
 class SimpleFetchTest {
 
+
+    lateinit var taskService: TaskService
+    @Before
+    fun initializeTaskService() {
+        taskService = Injection.getTaskService()
+    }
+
     @Test
     fun fetchFeeds() {
-        val taskService = ApiManager.taskService
         val feedsTransformer = Injection.getFeedsTransformer()
         val feedItems = taskService.getTasksFeed().map { feeds ->
             feedsTransformer.combineFeedsWithRemoteCalls(feeds, taskService)
@@ -26,7 +34,7 @@ class SimpleFetchTest {
 
     //@Test
     fun fetchTaskFeed() {
-        val taskFeed = ApiManager.taskService.getTasksFeed().blockingGet()
+        val taskFeed = taskService.getTasksFeed().blockingGet()
         assertTrue(taskFeed != null && taskFeed.feedItems.isNotEmpty() && taskFeed.profiles.isNotEmpty()
                 && taskFeed.tasks.isNotEmpty())
     }
@@ -35,7 +43,7 @@ class SimpleFetchTest {
     fun fetchTasks() {
         val tasksList = ArrayList<Single<Task>>()
         for (i in 1..5)
-            tasksList.add(ApiManager.taskService.getTask(i))
+            tasksList.add(taskService.getTask(i))
         val tasks = Single.merge(tasksList).toList().blockingGet()
         assertTrue(tasks != null && tasks.isNotEmpty())
     }
@@ -44,7 +52,7 @@ class SimpleFetchTest {
     fun testErrorCaseForTasks() {
         val tasksList = ArrayList<Single<Task>>()
         for (i in -1..2)
-            tasksList.add(ApiManager.taskService.getTask(i).onErrorReturn { t -> Task.getEmpty(i) })
+            tasksList.add(taskService.getTask(i).onErrorReturn { t -> Task.getEmpty(i) })
         val tasks = Single.merge(tasksList).toList().blockingGet()
         assertTrue(tasks != null && tasks.isNotEmpty())
     }
@@ -53,7 +61,7 @@ class SimpleFetchTest {
     fun fetchProfile() {
         val profileList = ArrayList<Single<Profile>>()
         for (i in 1..5)
-            profileList.add(ApiManager.taskService.getProfile(i))
+            profileList.add(taskService.getProfile(i))
         val profiles = Single.merge(profileList).toList().blockingGet()
         assertTrue(profiles != null && profiles.isNotEmpty())
     }
@@ -62,7 +70,7 @@ class SimpleFetchTest {
     fun testErrorCaseForProfile() {
         val profileList = ArrayList<Single<Profile>>()
         for (i in -1..2)
-            profileList.add(ApiManager.taskService.getProfile(i).onErrorReturn { t -> Profile.getEmpty(i) })
+            profileList.add(taskService.getProfile(i).onErrorReturn { t -> Profile.getEmpty(i) })
         val profiles = Single.merge(profileList).toList().blockingGet()
         assertTrue(profiles != null && profiles.isNotEmpty())
     }

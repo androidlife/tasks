@@ -1,5 +1,9 @@
-package com.tasks.model
+package com.tasks.model.transformer
 
+import com.tasks.model.FeedItem
+import com.tasks.model.Feeds
+import com.tasks.model.Profile
+import com.tasks.model.Task
 import com.tasks.network.TaskService
 import io.reactivex.Single
 import io.reactivex.functions.Function3
