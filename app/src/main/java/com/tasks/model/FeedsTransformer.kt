@@ -41,7 +41,7 @@ class FeedsTransformer(private val urlBase: String, private val tagProfileName: 
                     tasks.forEach { task ->
                         feeds.tasks[task]?.forEach {
                             feeds.feedItems[it].task = task
-                            feeds.feedItems[it].text = feeds.feedItems[it].text.replace(tagTaskName, task.name)
+                            feeds.feedItems[it].text = feeds.feedItems[it].text.replace(tagTaskName, "\"".plus(task.name).plus("\""))
                         }
                     }
                     feeds.feedItems
