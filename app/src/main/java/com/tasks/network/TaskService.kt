@@ -1,8 +1,8 @@
 package com.tasks.network
 
+import com.tasks.model.Feeds
 import com.tasks.model.Profile
 import com.tasks.model.Task
-import com.tasks.model.Feeds
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path

@@ -13,10 +13,18 @@ class SimpleFetchTest {
     @Test
     fun fetchFeeds() {
         val taskService = ApiManager.taskService
+        val feedsTransformer = Injection.getFeedsTransformer()
+        val feedItems = taskService.getTasksFeed().map { feeds ->
+            feedsTransformer.combineFeedsWithRemoteCalls(feeds, taskService)
+        }.flatMap { triple ->
+            feedsTransformer.zipProfilesAndTasksCall(triple)
+        }.blockingGet()
+        assertTrue(feedItems != null && !feedItems.isEmpty())
 
     }
 
-    @Test
+
+    //@Test
     fun fetchTaskFeed() {
         val taskFeed = ApiManager.taskService.getTasksFeed().blockingGet()
         assertTrue(taskFeed != null && taskFeed.feedItems.isNotEmpty() && taskFeed.profiles.isNotEmpty()
@@ -60,3 +68,4 @@ class SimpleFetchTest {
     }
 
 }
+
