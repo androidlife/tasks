@@ -44,7 +44,7 @@ class TasksListActivity : AppCompatActivity(), ListContract.View {
         linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
         rvTasks.layoutManager = linearLayoutManager
 
-        val divider = DividerItemDecoration(this, DividerItemDecoration.HORIZONTAL)
+        val divider = DividerItemDecoration(this, linearLayoutManager.orientation)
         divider.setDrawable(ContextCompat.getDrawable(this, R.drawable.divider))
         rvTasks.addItemDecoration(divider)
 
