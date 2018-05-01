@@ -10,6 +10,8 @@ import com.tasks.network.TAG_TASK_NAME
 import com.tasks.network.TaskService
 import com.tasks.network.URL_BASE
 import com.tasks.network.jsonserialization.TaskFeedDeserializer
+import com.tasks.screen.tasks.ListContract
+import com.tasks.screen.tasks.ListModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -29,6 +31,10 @@ object Injection {
         if (fontProvider == null)
             fontProvider = FontProvider(context.assets)
         return fontProvider
+    }
+
+    fun getListModel(): ListContract.Model {
+        return ListModel(taskService, getFeedsTransformer())
     }
 
     fun getRetrofit(): Retrofit {

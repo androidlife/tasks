@@ -4,4 +4,5 @@
     <string name="icon_comment">&#xf075;</string>
     <string name="icon_post">&#xf2b6;</string>
     <string name="icon_assigned">&#xf2bd;</string>
+    <string name="icon_calendar">&#xf073;</string>
 </resources>
