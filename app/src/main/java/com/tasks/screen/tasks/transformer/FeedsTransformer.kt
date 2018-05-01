@@ -1,4 +1,4 @@
-package com.tasks.model.transformer
+package com.tasks.screen.tasks.transformer
 
 import com.tasks.model.FeedItem
 import com.tasks.model.Feeds

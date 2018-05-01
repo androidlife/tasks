@@ -2,7 +2,7 @@ package com.tasks.screen.tasks
 
 import com.tasks.model.Error
 import com.tasks.model.FeedItem
-import com.tasks.model.transformer.FeedsTransformer
+import com.tasks.screen.tasks.transformer.FeedsTransformer
 import com.tasks.network.TaskService
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable

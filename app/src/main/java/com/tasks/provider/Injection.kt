@@ -4,7 +4,7 @@ import android.content.Context
 import com.google.gson.GsonBuilder
 import com.tasks.BuildConfig
 import com.tasks.model.Feeds
-import com.tasks.model.transformer.FeedsTransformer
+import com.tasks.screen.tasks.transformer.FeedsTransformer
 import com.tasks.network.TAG_PROFILE_NAME
 import com.tasks.network.TAG_TASK_NAME
 import com.tasks.network.TaskService
