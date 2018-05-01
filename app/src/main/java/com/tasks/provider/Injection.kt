@@ -21,13 +21,13 @@ import java.util.concurrent.TimeUnit
 
 object Injection {
     val taskService: TaskService = getRetrofit().create(TaskService::class.java)
-    private lateinit var fontProvider: FontProvider
+    private var fontProvider: FontProvider? = null
 
     fun getFeedsTransformer(): FeedsTransformer {
         return FeedsTransformer(URL_BASE, TAG_PROFILE_NAME, TAG_TASK_NAME)
     }
 
-    fun getFontProvider(context: Context): FontProvider {
+    fun getFontProvider(context: Context): FontProvider? {
         if (fontProvider == null)
             fontProvider = FontProvider(context.assets)
         return fontProvider
