@@ -55,6 +55,8 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
     // for image loading
     implementation 'com.github.bumptech.glide:glide:4.6.1'
+    //for mocking support for kotlin static classes
+    testImplementation 'com.nhaarman:mockito-kotlin:1.5.0'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'

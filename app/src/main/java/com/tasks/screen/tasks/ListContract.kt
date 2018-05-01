@@ -2,7 +2,6 @@ package com.tasks.screen.tasks
 
 import com.tasks.model.Error
 import com.tasks.model.FeedItem
-import com.tasks.model.Feeds
 
 interface ListContract {
 

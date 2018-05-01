@@ -9,6 +9,7 @@
     <color name="secondaryText">#757575</color>
     <color name="icons">#FFFFFF</color>
     <color name="divider">#BDBDBD</color>
+    <color name="dividerList">#e9e9e9</color>
 
     <color name="black_70">#77010101</color>
 
