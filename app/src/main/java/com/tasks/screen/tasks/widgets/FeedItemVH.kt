@@ -26,7 +26,7 @@ class FeedItemVH(override val containerView: View) : RecyclerView.ViewHolder(con
     fun bind(feedItem: FeedItem) {
         tvTitle.text = feedItem.text
         ImageLoader.loadImage(feedItem.profile.profileUrl, ivProfile, imageLoadOptions)
-        itvDate.text = getString(R.string.icon_calendar).plus(" ").plus(feedItem.createdAt)
+        itvDate.text = getString(R.string.icon_calendar).plus("  ").plus(feedItem.createdAt)
         itvEvent.text = when (feedItem.event) {
             EventType.Assigned -> getEventString(R.string.icon_assigned, EventType.Assigned.name)
             EventType.Completed -> getEventString(R.string.icon_completed, EventType.Completed.name)
@@ -40,6 +40,6 @@ class FeedItemVH(override val containerView: View) : RecyclerView.ViewHolder(con
     }
 
     private fun getEventString(stringId: Int, eventName: String): String {
-        return getString(stringId).plus(" ").plus(eventName)
+        return getString(stringId).plus("  ").plus(eventName)
     }
 }
