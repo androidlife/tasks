@@ -6,18 +6,14 @@ import com.tasks.network.TaskService
 import com.tasks.provider.Injection
 import io.reactivex.Single
 import org.junit.Assert.assertTrue
-import org.junit.Before
 import org.junit.Test
 
 
 class SimpleFetchTest {
 
 
-    lateinit var taskService: TaskService
-    @Before
-    fun initializeTaskService() {
-        taskService = Injection.getTaskService()
-    }
+    private val taskService: TaskService = Injection.taskService
+
 
     @Test
     fun fetchFeeds() {
@@ -32,14 +28,14 @@ class SimpleFetchTest {
     }
 
 
-    //@Test
+    @Test
     fun fetchTaskFeed() {
         val taskFeed = taskService.getTasksFeed().blockingGet()
         assertTrue(taskFeed != null && taskFeed.feedItems.isNotEmpty() && taskFeed.profiles.isNotEmpty()
                 && taskFeed.tasks.isNotEmpty())
     }
 
-    //@Test
+    @Test
     fun fetchTasks() {
         val tasksList = ArrayList<Single<Task>>()
         for (i in 1..5)
@@ -48,7 +44,7 @@ class SimpleFetchTest {
         assertTrue(tasks != null && tasks.isNotEmpty())
     }
 
-    //@Test
+    @Test
     fun testErrorCaseForTasks() {
         val tasksList = ArrayList<Single<Task>>()
         for (i in -1..2)
@@ -57,7 +53,7 @@ class SimpleFetchTest {
         assertTrue(tasks != null && tasks.isNotEmpty())
     }
 
-    //@Test
+    @Test
     fun fetchProfile() {
         val profileList = ArrayList<Single<Profile>>()
         for (i in 1..5)
@@ -66,7 +62,7 @@ class SimpleFetchTest {
         assertTrue(profiles != null && profiles.isNotEmpty())
     }
 
-    //@Test
+    @Test
     fun testErrorCaseForProfile() {
         val profileList = ArrayList<Single<Profile>>()
         for (i in -1..2)

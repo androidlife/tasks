@@ -3,10 +3,7 @@ package com.tasks.network.jsonserialization
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer
 import com.google.gson.JsonElement
-import com.tasks.model.FeedItem
-import com.tasks.model.Feeds
-import com.tasks.model.Profile
-import com.tasks.model.Task
+import com.tasks.model.*
 import java.lang.reflect.Type
 import java.text.SimpleDateFormat
 import java.util.*
@@ -50,7 +47,7 @@ class TaskFeedDeserializer() : JsonDeserializer<Feeds> {
             val text = jsonObject.get(TEXT).asString
             val createdAt = getFormattedDate(jsonObject.get(CREATED_AT).asString)
             val event = jsonObject.get(EVENT).asString
-            feeds.add(FeedItem(taskId, profileId, text, createdAt, event))
+            feeds.add(FeedItem(task, profile, text, createdAt, EventType.getInstance(event)))
             ++index
         }
 

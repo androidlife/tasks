@@ -1,13 +1,14 @@
-package com.tasks
+package com.tasks.screen.tasks
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.tasks.R
 
-class MainActivity : AppCompatActivity() {
+class TasksListActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_tasklist)
     }
 
 

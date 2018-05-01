@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="icon_completed">&#xf058;</string>
+    <string name="icon_comment">&#xf075;</string>
+    <string name="icon_post">&#xf2b6;</string>
+    <string name="icon_assigned">&#xf2bd;</string>
+</resources>

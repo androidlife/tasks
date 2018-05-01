@@ -1,10 +1,14 @@
 package com.tasks.provider
 
+import android.content.Context
 import com.google.gson.GsonBuilder
 import com.tasks.BuildConfig
 import com.tasks.model.Feeds
 import com.tasks.model.transformer.FeedsTransformer
-import com.tasks.network.*
+import com.tasks.network.TAG_PROFILE_NAME
+import com.tasks.network.TAG_TASK_NAME
+import com.tasks.network.TaskService
+import com.tasks.network.URL_BASE
 import com.tasks.network.jsonserialization.TaskFeedDeserializer
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -14,12 +18,17 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 object Injection {
+    val taskService: TaskService = getRetrofit().create(TaskService::class.java)
+    private lateinit var fontProvider: FontProvider
+
     fun getFeedsTransformer(): FeedsTransformer {
         return FeedsTransformer(URL_BASE, TAG_PROFILE_NAME, TAG_TASK_NAME)
     }
 
-    fun getTaskService(): TaskService {
-        return ApiManager.taskService
+    fun getFontProvider(context: Context): FontProvider {
+        if (fontProvider == null)
+            fontProvider = FontProvider(context.assets)
+        return fontProvider
     }
 
     fun getRetrofit(): Retrofit {
