@@ -3,12 +3,7 @@
 
     <color name="colorPrimary">#607D8B</color>
     <color name="colorPrimaryDark">#455A64</color>
-    <color name="colorPrimaryLight">#CFD8DC</color>
     <color name="colorAccent">#03A9F4</color>
-    <color name="primaryText">#212121</color>
-    <color name="secondaryText">#757575</color>
-    <color name="icons">#FFFFFF</color>
-    <color name="divider">#BDBDBD</color>
     <color name="dividerList">#e9e9e9</color>
 
     <color name="black_70">#77010101</color>

@@ -5,7 +5,7 @@ const val EVENT_POST = "post"
 const val EVENT_COMMENT = "comment"
 const val EVENT_COMPLETED = "completed"
 
-enum class EventType(val type: String) {
+enum class EventType( type: String) {
     Assigned(EVENT_ASSIGNED),
     Post(EVENT_POST),
     Comment(EVENT_COMMENT),

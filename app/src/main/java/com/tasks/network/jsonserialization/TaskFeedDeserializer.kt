@@ -8,7 +8,7 @@ import java.lang.reflect.Type
 import java.text.SimpleDateFormat
 import java.util.*
 
-class TaskFeedDeserializer() : JsonDeserializer<Feeds> {
+class TaskFeedDeserializer : JsonDeserializer<Feeds> {
     private val TASK_ID = "task_id"
     private val PROFILE_ID = "profile_id"
     private val TEXT = "text"
@@ -16,7 +16,7 @@ class TaskFeedDeserializer() : JsonDeserializer<Feeds> {
     private val EVENT = "event"
 
     private val convertDateFormat = SimpleDateFormat("EEE hh:mmaaa", Locale.ENGLISH)
-    private val originalDateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:SSX", Locale.ENGLISH);
+    private val originalDateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:SSX", Locale.ENGLISH)
 
     override fun deserialize(json: JsonElement?, typeOfT: Type?, context: JsonDeserializationContext?): Feeds {
         val feeds = ArrayList<FeedItem>()
