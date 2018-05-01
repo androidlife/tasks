@@ -14,6 +14,8 @@ import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 
 
+// Testing the working mechanism of ListModel implementation
+// with assumption that there is network and result is always feeds
 class ListModelTest {
 
     var feedsMain: List<FeedItem> = ArrayList<FeedItem>()

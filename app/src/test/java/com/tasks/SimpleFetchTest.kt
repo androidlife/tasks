@@ -9,6 +9,9 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 
 
+/**
+ * Testing various aspects of TaskService and Chaining of FeedTransformer
+ */
 class SimpleFetchTest {
 
 

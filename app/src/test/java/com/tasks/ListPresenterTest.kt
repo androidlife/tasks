@@ -13,6 +13,9 @@ import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
 import org.mockito.Mockito.`when` as _when
 
+//Testing overall logic of the Presenter layer and
+// checking whether necessary calls are made as per various state
+// actions
 class ListPresenterTest {
     @Mock
     lateinit private var listModel: ListContract.Model
