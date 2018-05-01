@@ -15,14 +15,14 @@ import org.mockito.Mockito.`when` as _when
 
 class ListPresenterTest {
     @Mock
-    lateinit var listModel: ListContract.Model
+    lateinit private var listModel: ListContract.Model
     @Mock
-    lateinit var view: ListContract.View
+    lateinit private var view: ListContract.View
 
-    lateinit var listPresenter: ListContract.Presenter
+    lateinit private var listPresenter: ListContract.Presenter
 
     @Before
-    fun initalize() {
+    fun initialise() {
         MockitoAnnotations.initMocks(this)
         listPresenter = ListPresenter(view, listModel)
     }

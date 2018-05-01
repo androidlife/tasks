@@ -11,7 +11,7 @@ import com.bumptech.glide.request.RequestOptions
  */
 
 object ImageLoader {
-    var requestOptions: RequestOptions? = null
+    private var requestOptions: RequestOptions? = null
 
     fun loadImage(url: String, imageView: ImageView,
                   imageLoadOptions: ImageLoadOptions) {

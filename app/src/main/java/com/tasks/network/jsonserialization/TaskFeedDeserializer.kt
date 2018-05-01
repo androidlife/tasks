@@ -15,7 +15,7 @@ class TaskFeedDeserializer : JsonDeserializer<Feeds> {
     private val CREATED_AT = "created_at"
     private val EVENT = "event"
 
-    private val convertDateFormat = SimpleDateFormat("EEE hh:mmaaa", Locale.ENGLISH)
+    private val convertDateFormat = SimpleDateFormat("EEE hh:mm aaa", Locale.ENGLISH)
     private val originalDateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:SSX", Locale.ENGLISH)
 
     override fun deserialize(json: JsonElement?, typeOfT: Type?, context: JsonDeserializationContext?): Feeds {

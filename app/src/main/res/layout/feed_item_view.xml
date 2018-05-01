@@ -43,7 +43,7 @@
         android:paddingBottom="@dimen/item_bottom_margin"
         style="@style/BottomTextViewStyle"
         android:singleLine="true"
-        android:gravity="right"
+        android:gravity="end"
         app:layout_constraintBottom_toBottomOf="@id/ivProfile"
         app:layout_constraintLeft_toRightOf="@id/itvDate"
         app:layout_constraintRight_toRightOf="parent"
