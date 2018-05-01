@@ -4,6 +4,14 @@ package com.tasks.image
 import com.tasks.R
 
 /**
+ * A simple class with builder pattern to
+ * construct various request options like error drawable,
+ * place holder drawable, resize dimensions
+ * The reason this is constructed that it be independent of any
+ * external Image Loader library ( be is Picasso or Glide )
+ * and we map this options to the relevant image loading options
+ * given by the used Image Loader Library
+ * @see ImageLoader.loadImage
  */
 
 class ImageLoadOptions private constructor() {

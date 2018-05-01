@@ -8,6 +8,19 @@ import java.lang.reflect.Type
 import java.text.SimpleDateFormat
 import java.util.*
 
+/**
+ * This is our custom JsonDeserializer for parsing the json array from
+ * @see com.tasks.network.URL_TASKS_FEED
+ * The reason for using a custom JsonDeserializer is that we need to
+ * call multiple API for
+ * @see com.tasks.model.Profile
+ * @see com.tasks.model.Task
+ * So here we create a  List<FeedItem> along with
+ * HashMap<Profile,ArrayList<Int>> where ArrayList<Int> contains the index of List<FeedItem>
+ * HashMap<Task,ArrayList<Int>> where ArrayList<Int> contains the index of List<FeedItem>
+ * After this there won't be a multiple API call for same profile or task id
+ *
+ */
 class TaskFeedDeserializer : JsonDeserializer<Feeds> {
     private val TASK_ID = "task_id"
     private val PROFILE_ID = "profile_id"

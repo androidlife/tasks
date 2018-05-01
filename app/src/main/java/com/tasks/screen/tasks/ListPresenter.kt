@@ -3,6 +3,12 @@ package com.tasks.screen.tasks
 import com.tasks.model.Error
 import com.tasks.model.FeedItem
 
+/**
+ * ListContract.Presenter implementation class
+ * which coordinates between View and Model
+ * @see ListContract
+ *
+ */
 class ListPresenter(val view: ListContract.View, val model: ListContract.Model) : ListContract.Presenter {
 
 

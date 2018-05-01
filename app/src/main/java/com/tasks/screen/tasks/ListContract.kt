@@ -3,6 +3,8 @@ package com.tasks.screen.tasks
 import com.tasks.model.Error
 import com.tasks.model.FeedItem
 
+//Overall contract used by Model, View and Presenter
+// for our TaskListActivity or screen
 interface ListContract {
 
     interface View {

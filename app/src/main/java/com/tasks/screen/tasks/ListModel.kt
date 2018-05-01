@@ -2,12 +2,25 @@ package com.tasks.screen.tasks
 
 import com.tasks.model.Error
 import com.tasks.model.FeedItem
-import com.tasks.screen.tasks.transformer.FeedsTransformer
 import com.tasks.network.TaskService
+import com.tasks.screen.tasks.transformer.FeedsTransformer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
+/**
+ *  Model contract implementation class
+ *  Here we do various api calls chaining
+ *  and for that we require
+ *  @see TaskService
+ *  and
+ *  @see FeedsTransformer
+ *  @param taskService
+ *  is for api calls
+ *  @param feedsTransformer
+ *  is to chain various API calls
+ *  It's main task is to get List<FeedItem> from various API
+ */
 class ListModel(private val taskService: TaskService, private val feedsTransformer: FeedsTransformer) : ListContract.Model {
 
     private var cancel: Boolean = false
@@ -25,6 +38,10 @@ class ListModel(private val taskService: TaskService, private val feedsTransform
                 })
     }
 
+    /**
+     * If model is cancelled, we no longer need any
+     * ongoing API calls
+     */
     override fun cancel(cancel: Boolean) {
         this.cancel = cancel
         if (this.cancel)

@@ -9,7 +9,36 @@ import io.reactivex.Single
 import io.reactivex.functions.Function3
 import io.reactivex.schedulers.Schedulers
 
+/**
+ * This class is generally responsible for providing chains for various API calls and used by
+ * @see com.tasks.screen.tasks.ListModel
+ * It requires urlBase which is
+ * @see com.tasks.network.URL_BASE
+ * so that we can concatenate the profile url with url base
+ * It also requires tagProfileName which is
+ * @see com.tasks.network.TAG_PROFILE_NAME
+ * and tagTaskName which is
+ * @see com.tasks.network.TAG_TASK_NAME
+ * so that we can make necessary text replacement for
+ * @see FeedItem.text
+ * with fetched
+ * @see Profile
+ * and
+ * @see Task
+ */
 class FeedsTransformer(private val urlBase: String, private val tagProfileName: String, private val tagTaskName: String) {
+
+    /**
+     * Here we have
+     * @param feeds
+     * which contains List<FeedItem>, Map<Profile,List<Int>>, Map<Task,List<Int>>
+     * and we iterated, Map<Profile,List<Int>>, Map<Task,List<Int>> with their key values
+     * and create a Single<Profile> or Single<Task> and add in the list
+     * Then we merge those single so that we could get List<Profile> and List<Task>
+     * once we call that singles
+     * To do that we need help of
+     * @see TaskService
+     */
     fun combineFeedsWithRemoteCalls(feeds: Feeds, taskService: TaskService): Triple<Single<Feeds>, Single<List<Profile>>, Single<List<Task>>> {
         val profilesRequest = ArrayList<Single<Profile>>()
         feeds.profiles.keys.forEach { profile: Profile ->
@@ -27,6 +56,13 @@ class FeedsTransformer(private val urlBase: String, private val tagProfileName: 
         return Triple(Single.just(feeds), profilesRequestCombined, tasksRequestCombined)
     }
 
+    /**
+     * This is another chain, that comes after
+     * @see combineFeedsWithRemoteCalls
+     * where we simply zip all the remote calls
+     * and once we receive all the results, we return
+     * List<FeedItem>  which contains all the updated Profile and Task value
+     */
     fun zipProfilesAndTasksCall(triple: Triple<Single<Feeds>, Single<List<Profile>>, Single<List<Task>>>): Single<List<FeedItem>> {
         return Single.zip(
                 triple.first,

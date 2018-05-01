@@ -10,6 +10,10 @@ import com.tasks.model.FeedItem
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.feed_item_view.*
 
+/**
+ * Simple ViewHolder class for individual RowItem
+ * of the RecyclerView
+ */
 class FeedItemVH(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer {
     private val imageLoadOptions: ImageLoadOptions
 
